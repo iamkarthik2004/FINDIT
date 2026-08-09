@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #6d5dfb;
+  --color-primary-dark: #5546d8;
+  --color-primary-light: #8f83fc;
+  --color-bg: #ffffff;
+  --color-bg-soft: #f7f5ff;
+  --color-card: #ffffff;
+  --color-text: #17172b;
+  --color-text-secondary: #6b6b80;
+  --color-border: #e9e6f5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white font-sans text-ink antialiased;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+::selection {
+  background: rgba(109, 93, 251, 0.2);
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply rounded-2xl border border-lavender-200 bg-white shadow-soft;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-lavender-200 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink-soft/60 transition focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/15;
+  }
+
+  .input option {
+    @apply bg-white text-ink;
+  }
+
+  .input-label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus:ring-4 focus:ring-primary/20;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-primary-dark hover:shadow-lift focus:outline-none focus:ring-4 focus:ring-primary/25 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-lavender-200 bg-white px-5 py-2.5 text-sm font-semibold text-ink transition duration-200 hover:border-primary/40 hover:bg-lavender-50 hover:text-primary-dark focus:outline-none focus:ring-4 focus:ring-primary/15 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-ink-soft transition hover:text-primary-dark hover:bg-lavender-50 focus:outline-none focus:ring-4 focus:ring-primary/15;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold tracking-tight text-ink sm:text-4xl;
+  }
+
+  .section-sub {
+    @apply mt-3 text-base text-ink-soft sm:text-lg;
+  }
+}
+
+/* Subtle fade-in on route change */
+.route-enter {
+  animation: fade-in 0.35s ease-out both;
+}
+
+.hero-float {
+  animation: hero-float 5s ease-in-out infinite;
+}
+
+.hero-message-float {
+  animation: hero-message-float 5s ease-in-out 0.35s infinite;
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes hero-message-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-float,
+  .hero-message-float {
+    animation: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  @apply relative overflow-hidden bg-lavender-100;
+}
+.skeleton::after {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.65),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Thin, branded scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9d3f3;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c4bcf0;
+}
+
+/* Form validation error ring */
+.input-error {
+  @apply border-error focus:ring-error/20;
+}
