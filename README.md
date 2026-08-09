@@ -1,4 +1,5 @@
 # FINDIT
+##  Smart Campus Lost & Found
 
 FINDIT is a campus lost-and-found platform for reporting belongings, discovering possible matches, submitting verified claims, chatting securely, and confirming successful returns.
 
